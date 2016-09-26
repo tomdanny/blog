@@ -71,20 +71,6 @@
                         </div> <!-- Add Category Form -->
   
                         <div class="col-xs-6">
-
-                          <?php  
-
-                              $query = "SELECT * FROM categories";
-
-                              $select_categories = mysqli_query($connection, $query);
-
-                              if(!$select_categories) {
-
-                                  echo "QUERY FAILED " . mysqli_error($select_categories);
-
-                              }
-
-                          ?>
                           
                           <table class="table table-bordered table-hover">
                             <thead>
@@ -97,6 +83,17 @@
 
                               <?php  
 
+                                // FIND ALL CATEGORIES QUERY
+
+                                $query = "SELECT * FROM categories";
+
+                                $select_categories = mysqli_query($connection, $query);
+
+                                if(!$select_categories) {
+
+                                    echo "QUERY FAILED " . mysqli_error($select_categories);
+
+                                }
 
                                 while($row = mysqli_fetch_assoc($select_categories)) {
                                     $cat_id = $row['cat_id'];
@@ -105,10 +102,29 @@
                                     echo "<tr>";
                                     echo "<td>{$cat_id}</td>";
                                     echo "<td>{$cat_title}</td>";
+                                    echo "<td><a href='categories.php?delete={$cat_id}'>Delete</a></td>";
                                     echo "</tr>";
 
                                 }
 
+
+                              ?>
+
+
+
+                              <?php  
+
+                                // DELETE QUERY
+
+                                if(isset($_GET['delete'])) {
+
+                                  $the_cat_id = $_GET['delete'];
+
+                                  $query = "DELETE FROM categories WHERE cat_id = {$the_cat_id} ";
+                                  $delete_query = mysqli_query($connection, $query);
+                                  header("Location: categories.php");
+
+                                }
 
                               ?>
 
