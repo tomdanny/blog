@@ -22,11 +22,7 @@
 
         $select_posts = mysqli_query($connection, $query);
 
-        if(!$select_posts) {
-
-            echo "QUERY FAILED " . mysqli_error($select_posts);
-
-        }
+        confirmQuery($select_posts);
 
         while($row = mysqli_fetch_assoc($select_posts)) {
             $post_id = $row['post_id'];
@@ -49,6 +45,7 @@
             echo "<td>{$post_tags}</td>";
             echo "<td>{$post_comment_count}</td>";
             echo "<td>{$post_date}</td>";
+            echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
             echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
             echo "</tr>";
 
@@ -72,7 +69,7 @@
 
         $delete_query = mysqli_query($connection, $query);
 
-        comfirm($delete_query);
+        confirm($delete_query);
 
       }
 

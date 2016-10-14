@@ -15,11 +15,7 @@
             $select_categories_id = mysqli_query($connection, $query);
 
 
-            if(!$select_categories_id) {
-
-                echo "QUERY FAILED " . mysqli_error($select_categories_id);
-
-            }
+            confirmQuery($select_categories_id);
 
             while($row = mysqli_fetch_assoc($select_categories_id)) {
               $cat_id = $row['cat_id'];

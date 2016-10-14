@@ -1,7 +1,7 @@
 <?php  
 
 
-function comfirm($result) {
+function confirmQuery($result) {
 
   global $connection;
 

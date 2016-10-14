@@ -24,7 +24,7 @@
     $create_post_query = mysqli_query($connection, $query); 
 
 
-    comfirm($create_post_query);
+    confirmQuery($create_post_query);
 
   }
 
